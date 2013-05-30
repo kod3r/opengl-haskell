@@ -20,7 +20,8 @@ float cubeRoot(float a) {
 }
 
 vec2 curve(float t) {
-  return (pow(1.0-t, 2.0)*p0) + (2.0*(1.0-t)*t*p1) + (pow(t, 2.0)*p2);
+  float a = 1.0-t;
+  return ((a*a)*p0) + (2.0*(1.0-t)*t*p1) + ((t*t)*p2);
 }
 
 float distance(vec2 a, vec2 b) {
@@ -44,7 +45,7 @@ float add(vec2 a) {
 }
 
 float solveForThreeRealRoots(float a, float b, float c, float d, float g, float f, float h) {
-  float i  = sqrt((pow(g, 2.0) / 4.0) - h);
+  float i  = sqrt(((g*g) / 4.0) - h);
   float j  = cubeRoot(i);
   float k  = acos(-(g / (2.0*i)));
   float l  = j * (-1.0);
@@ -80,7 +81,7 @@ float solveForEqualRoots(float a, float b, float c, float d, float g, float f, f
 float cubicRoot(float a, float b, float c, float d) {
   float f = ((3.0*a*c) - (b*b)) / (3.0*a*a);
   float g = ((2.0*b*b*b) - (9.0*a*b*c) + (27.0*a*a*d)) / (27.0*a*a*a);
-  float h = (pow(g, 2.0) / 4.0) + (pow(f, 3.0) / 27.0);
+  float h = ((g*g) / 4.0) + ((f*f*f) / 27.0);
   if(h < 0.0)
     return solveForThreeRealRoots(a, b, c, d, g, f, h);
   else if(h > 0.0)

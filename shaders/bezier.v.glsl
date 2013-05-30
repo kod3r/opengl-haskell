@@ -1,5 +1,5 @@
 #version 110
-#define DELTA 0.05
+#define DELTA 0.03
 
 uniform vec2 c0;
 uniform vec2 c1;
@@ -54,7 +54,7 @@ void main(void) {
     point = vec2(minx, maxy);
 
   gl_Position = vec4(point, 0.0, 1.0);
-  gl_Position.z = rand(p0);
+  gl_Position.z = -p0.x;
 
   av    = -2.0 * (alpha * alpha);
   bv    = -3.0 * (alpha * beta);
